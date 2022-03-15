@@ -12,19 +12,16 @@ export class TradfriService {
 
   setBrightness(brightness: number): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
-
     return this.http.post<{}>(this.baseURL + '/golvlampa/brightness/' + brightness, { headers });
   }
 
   turnOn(): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
-
     return this.http.post<{}>(this.baseURL + '/golvlampa/on', { headers });
   }
 
   turnOff(): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
-
     return this.http.post<{}>(this.baseURL + '/golvlampa/off', { headers });
   }
 }
