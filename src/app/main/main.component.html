@@ -1,10 +1,22 @@
-<div class="container bootstrap snippets bootdey mt-5 ">
-    <div class="w-50 mx-auto mt-5">
-      <p>Golvlampa som står hemma på S:t Persgatan 51</p>
-        <input [(ngModel)]="brightness" name="brightness"  class="form-control" placeholder="Ljusstyrka i procent" type="text">
-        <div class="clearfix"></div>
-        <button  (click)="changeBrightness()" class="btn btn-block btn-primary btn-float m-t-25 w-100" >Ändra ljusstyrka</button>
-        <button (click)="turnOn()" class="btn btn-block btn-success btn-float m-t-25 w-100 mt-5">Tänd golvlampa</button>
-        <button (click)="turnOff()" class="btn btn-block btn-danger btn-float m-t-25 w-100 mt-3">Släck golvlampa</button>
-    </div>
+<div class="card mx-auto w-50 mt-5">
+  <div class="card-body">
+    <h5 class="card-title">Device-name: Golvlampa</h5>
+    <p class="card-text">Manifacturer: IKEA of Sweden</p>
+    <p class="card-text">Model name: TRADFRI bulb E27 WS opal 1000lm</p>
+    <p class="card-text">Firmware version: 2.3.091</p>
+    <p class="card-text">Current brightness: 142</p>
+    <p *ngIf="this.status">Golvlampan är tänd</p>
+    <p *ngIf="!this.status">Golvlampan är släckt</p>
+  </div>
+</div>
+
+<div class="card mx-auto mt-3 w-50 ">
+  <div class="card-body">
+
+      <input [(ngModel)]="brightness" name="brightness"  class="form-control" placeholder="Ljusstyrka i procent" type="text">
+      <div class="clearfix"></div>
+      <button  (click)="changeBrightness()" class="btn btn-block btn-primary btn-float m-t-25 w-100" >Ändra ljusstyrka</button>
+      <button (click)="turnOn()" class="btn btn-block btn-success btn-float m-t-25 w-100 mt-5">Tänd golvlampa</button>
+      <button (click)="turnOff()" class="btn btn-block btn-danger btn-float m-t-25 w-100 mt-3">Släck golvlampa</button>
+  </div>
 </div>

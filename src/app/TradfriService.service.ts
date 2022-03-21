@@ -24,4 +24,9 @@ export class TradfriService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post<{}>(this.baseURL + '/golvlampa/off', { headers });
   }
+
+  status(): Observable<boolean> {
+    const headers = { accept: 'application/json' };
+    return this.http.get<boolean>(this.baseURL + '/golvlampa/status', { headers });
+  }
 }

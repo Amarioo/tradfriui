@@ -9,16 +9,33 @@ import { TradfriService } from '../TradfriService.service';
 })
 export class MainComponent implements OnInit {
    brightness: number = 0;
+   status: boolean =  false;
   constructor(private service: TradfriService) { }
 
   ngOnInit(): void {
+    this.golvlampaStatus();
   }
 
 turnOn() {
-  console.log('PÅ');
   this.service.turnOn().subscribe(
     (data: any) => {
-      console.log('vamos')
+    }, (error: HttpErrorResponse) => {
+      if (!error.error.hasOwnProperty('error')) {
+        console.log(error.message);
+        return;
+      }
+    });
+    
+    if(!this.status) {
+      this.status = true;
+    }
+}
+
+
+golvlampaStatus() {
+  this.service.status().subscribe(
+    (data: any) => {
+     this.status = data;
     }, (error: HttpErrorResponse) => {
       if (!error.error.hasOwnProperty('error')) {
         console.log(error.message);
@@ -28,17 +45,18 @@ turnOn() {
 }
 
 turnOff() {
-  console.log('AV');
   
   this.service.turnOff().subscribe(
     (data: any) => {
-      console.log('vamos')
     }, (error: HttpErrorResponse) => {
       if (!error.error.hasOwnProperty('error')) {
         console.log(error.message);
         return;
       }
     });
+    if(this.status) {
+      this.status = false;
+    }
 }
 
 changeBrightness() {
