@@ -29,4 +29,9 @@ export class TradfriService {
     const headers = { accept: 'application/json' };
     return this.http.get<boolean>(this.baseURL + '/golvlampa/status', { headers });
   }
+
+  getGolvlampa(): Observable<any> {
+    const headers = { accept: 'application/json' };
+    return this.http.get<any>(this.baseURL + '/golvlampa', { headers });
+  }
 }

@@ -1,12 +1,12 @@
 <div class="card mx-auto w-50 mt-5">
   <div class="card-body">
-    <h5 class="card-title">Device-name: Golvlampa</h5>
-    <p class="card-text">Manifacturer: IKEA of Sweden</p>
-    <p class="card-text">Model name: TRADFRI bulb E27 WS opal 1000lm</p>
-    <p class="card-text">Firmware version: 2.3.091</p>
-    <p class="card-text">Current brightness: 142</p>
-    <p *ngIf="this.status">Golvlampan är tänd</p>
-    <p *ngIf="!this.status">Golvlampan är släckt</p>
+    <h5 class="card-title">Device-name: {{this.golvlampa.name}}</h5>
+    <p class="card-text">Manifacturer: {{this.golvlampa.manifacturer}}</p>
+    <p class="card-text">Model name: {{this.golvlampa.deviceName}}</p>
+    <p class="card-text">Firmware version: {{this.golvlampa.firmwareVersion}}</p>
+    <p class="card-text">Current brightness: {{this.golvlampa.brightness}}</p>
+    <p *ngIf="this.status">Lampan är <b>tänd</b></p>
+    <p *ngIf="!this.status">Lampan är <b>släckt</b></p>
   </div>
 </div>
 
