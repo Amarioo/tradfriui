@@ -20,6 +20,11 @@ export class TradfriService {
     return this.http.post<{}>(this.baseURL + '/golvlampa/on', { headers });
   }
 
+  changeColour(colour: number): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+    return this.http.post<{}>(this.baseURL + '/golvlampa/colour/' + colour, { headers });
+  }
+
   turnOff(): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post<{}>(this.baseURL + '/golvlampa/off', { headers });
@@ -28,6 +33,11 @@ export class TradfriService {
   status(): Observable<boolean> {
     const headers = { accept: 'application/json' };
     return this.http.get<boolean>(this.baseURL + '/golvlampa/status', { headers });
+  }
+
+  colour(): Observable<number> {
+    const headers = { accept: 'application/json' };
+    return this.http.get<number>(this.baseURL + '/golvlampa/colour', { headers });
   }
 
   getGolvlampa(): Observable<any> {

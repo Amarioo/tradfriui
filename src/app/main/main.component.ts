@@ -12,12 +12,13 @@ export class MainComponent implements OnInit {
   brightness: number = 0;
   status: boolean = false;
   public golvlampa: Golvlampa = new Golvlampa("", "", "", "", "");
-
+  colour: number = 0;
   constructor(private service: TradfriService) { }
 
   ngOnInit(): void {
-    this.golvlampaStatus();
     this.getGolvlampa();
+    this.golvlampaStatus();
+    this.golvlampaColour();
   }
 
   turnOn() {
@@ -50,6 +51,21 @@ export class MainComponent implements OnInit {
     this.service.status().subscribe(
       (data: any) => {
         this.status = data;
+        console.log(this.colour)
+      }, (error: HttpErrorResponse) => {
+        if (!error.error.hasOwnProperty('error')) {
+          console.log(error.message);
+          return;
+        }
+      });
+  }
+
+
+  golvlampaColour() {
+    this.service.colour().subscribe(
+      (data: any) => {
+        this.colour = data
+        console.log(this.colour)
       }, (error: HttpErrorResponse) => {
         if (!error.error.hasOwnProperty('error')) {
           console.log(error.message);
@@ -66,6 +82,8 @@ export class MainComponent implements OnInit {
         this.golvlampa.manifacturer = data.deviceInfo[0];
         this.golvlampa.firmwareVersion = data.deviceInfo[3];
         this.golvlampa.brightness = data.brightness;
+        this.colour = data.colourHex;
+
       }, (error: HttpErrorResponse) => {
         if (!error.error.hasOwnProperty('error')) {
           console.log(error.message);
@@ -86,6 +104,19 @@ export class MainComponent implements OnInit {
     if (this.status) {
       this.status = false;
     }
+  }
+
+
+  changeColour(colour: number) {
+    this.service.changeColour(colour).subscribe(
+      (data: any) => {
+      }, (error: HttpErrorResponse) => {
+        if (!error.error.hasOwnProperty('error')) {
+          console.log(error.message);
+          return;
+        }
+      });
+    this.colour = colour;
   }
 
   changeBrightness() {

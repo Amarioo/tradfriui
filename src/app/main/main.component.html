@@ -1,27 +1,73 @@
-  <div class="card w-25 mt-5 mx-auto">
-    <div class="card-body">
-      <h5 class="card-title">Device-name: {{this.golvlampa.name}} </h5>
-      <p class="card-text">Manifacturer: {{this.golvlampa.manifacturer}}</p>
-      <p class="card-text">Model name: <br>{{this.golvlampa.deviceName}}</p>
-      <p class="card-text">Firmware version: {{this.golvlampa.firmwareVersion}}</p>
-      <p class="card-text">Current brightness: {{this.golvlampa.brightness}}</p>
-      <p *ngIf="this.status">Lampan är <b>tänd</b></p>
-      <p *ngIf="!this.status">Lampan är <b>släckt</b></p>
-      
-      <div (click)="switchState()" class="form-check form-switch">
-        <label *ngIf="!this.status" class="form-check-label" for="flexSwitchCheckChecked">Tänd golvlampa</label>
-        <label *ngIf="this.status" class="form-check-label" for="flexSwitchCheckChecked">Släck golvlampa</label>
-        <input *ngIf="!this.status"class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-        <input *ngIf="this.status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-      </div>
+<div class="card w-25 mt-5 mx-auto">
+  <div class="card-body">
+    <div class="samerow"> 
+      <h5></h5>
+     <span class="textTest mr-3"> Namn på lampa: {{this.golvlampa.name}}</span>
+     <svg *ngIf="colour ===1 && (this.status)" height="24" width="24">
+      <circle class="form-control" cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#efd275" />
+    </svg>
 
-      <div class="input-group mb-3 mt-3">
-        <input [(ngModel)]="brightness" type="text" class="form-control" placeholder="Skriv in önskad ljusstyrka">
-        <div class="input-group-append">
-          <button (click)="changeBrightness()" class="btn btn-outline-primary" type="button">Ändra ljusstyrka</button>
-        </div>
-      </div>
+    <svg *ngIf="colour ===2 && (this.status)" height="24" width="24">
+      <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f1e0b5" />
+    </svg>
 
+    <svg *ngIf="colour ===3 && (this.status)" height="24" width="24">
+      <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f2eccf" />
+    </svg>
+
+    <svg *ngIf="colour ===4 && (this.status)" height="24" width="24">
+      <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f3f3e3" />
+    </svg>
+
+    <svg *ngIf="colour ===5 && (this.status)" height="24" width="24">
+      <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f5faf6" />
+    </svg>
     </div>
-    
+   
+    <p class="card-text mt-3">Tillverkare: {{this.golvlampa.manifacturer}}</p>
+    <p class="card-text">Modellnamn: <br>{{this.golvlampa.deviceName}}</p>
+    <p class="card-text">Systemversion: {{this.golvlampa.firmwareVersion}}</p>
+    <p class="card-text">Nuvarande ljusstyrka: {{this.golvlampa.brightness}}</p>
+    <p *ngIf="this.status">Lampan är <b>tänd</b></p>
+    <p *ngIf="!this.status">Lampan är <b>släckt</b></p>
 
+
+    <div class="mt-2 ">
+      <p>Välj färg:</p>
+      <svg (click)="changeColour(1)" height="50" width="50">
+        <circle class="form-control" cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#efd275" />
+      </svg>
+
+      <svg (click)="changeColour(2)" height="50" width="50">
+        <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f1e0b5" />
+      </svg>
+
+      <svg (click)="changeColour(3)" height="50" width="50">
+        <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f2eccf" />
+      </svg>
+
+      <svg (click)="changeColour(4)" height="50" width="50">
+        <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f3f3e3" />
+      </svg>
+
+      <svg (click)="changeColour(5)" height="50" width="50">
+        <circle cx="12.5" cy="12.5" r="10" stroke="black" stroke-width="3" fill="#f5faf6" />
+      </svg>
+    </div>
+
+    <div (click)="switchState()" class="form-check form-switch">
+      <label *ngIf="!this.status" class="form-check-label" for="flexSwitchCheckChecked">Tänd golvlampa</label>
+      <label *ngIf="this.status" class="form-check-label" for="flexSwitchCheckChecked">Släck golvlampa</label>
+      <input *ngIf="!this.status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+      <input *ngIf="this.status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+        checked>
+    </div>
+
+
+    <div class="input-group mb-3 mt-3">
+      <input [(ngModel)]="brightness" type="text" class="form-control" placeholder="Skriv in önskad ljusstyrka">
+      <div class="input-group-append">
+        <button (click)="changeBrightness()" class="btn btn-outline-primary" type="button">Ändra ljusstyrka</button>
+      </div>
+    </div>
+  </div>
